@@ -155,12 +155,43 @@ ClapSawDemoEditor::ClapSawDemoEditor(ClapSawDemo::SynthToUI_Queue_t &i,
 {
 
 }
-
-void ClapSawDemoEditor::addSliderForParam(clap_id pid, const char* label, float min, float max)
+enum WidgetType
 {
+    H_SLIDER,
+    V_SLIDER,
+    KNOB
+};
+void ClapSawDemoEditor::addSliderForParam(clap_id pid, const char *label, float min, float max,int type)
+{
+    std::string tmp = std::to_string(pid);
+    char const *widgetId = tmp.c_str();
+    ImGui::PushID(widgetId);
+
     float co = paramCopy[pid];
     auto wasInEdit = paramInEdit[pid];
-    if (ImGui::SliderFloat(label, &co, min, max))
+    bool currentValueHasChanged = false;
+    switch (type)
+    {
+    case H_SLIDER:
+        currentValueHasChanged = ImGui::SliderFloat(label, &co, min, max);
+        break;
+    case V_SLIDER:
+
+        ImGui::BeginGroup();
+
+        currentValueHasChanged =
+            ImGui::VSliderFloat("##v", ImVec2(36, 200), &co, min, max, "%.2f S",
+                                ImGuiSliderFlags_::ImGuiSliderFlags_NoRoundToFormat);
+        ImGui::Text(label);
+        ImGui::EndGroup();
+        break;
+    case KNOB:
+        currentValueHasChanged =
+            ImGuiKnobs::Knob(label, &co, -6.0f, 6.0f, 0.1f, "%.1fdB", ImGuiKnobVariant_Tick);
+        break;
+    }
+    ImGui::PopID();
+    if (currentValueHasChanged)
     {
         if (!wasInEdit)
         {

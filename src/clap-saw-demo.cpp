@@ -48,14 +48,14 @@ ClapSawDemo::~ClapSawDemo()
 
 const char *features[] = {CLAP_PLUGIN_FEATURE_INSTRUMENT, CLAP_PLUGIN_FEATURE_SYNTHESIZER, nullptr};
 clap_plugin_descriptor ClapSawDemo::desc = {CLAP_VERSION,
-                                            "org.surge-synth-team.clap-saw-demo-imgui",
-                                            "Clap Saw Demo Synth (ImgGui version)",
-                                            "Surge Synth Team",
-                                            "https://surge-synth-team.org",
+                                            "org.enkelmagnus.clap-imgui-template",
+                                            "Clap Template(ImgGui version)",
+                                            "Enkelmagnus Synth Team",
+                                            "https://github.com/EnkelMagnus",
                                             "",
                                             "",
                                             "1.0.0",
-                                            "A simple sawtooth synth to show CLAP features.",
+                                            "Clap template.",
                                             features};
 /*
  * PARAMETER SETUP SECTION
