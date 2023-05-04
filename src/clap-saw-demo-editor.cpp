@@ -7,7 +7,7 @@
 #include "clap/clap.h"
 
 #include "imgui.h"
-
+#include "imgui-knobs.h"
 #define STR_INDIR(x) #x
 #define STR(x) STR_INDIR(x)
 
@@ -314,18 +314,18 @@ void ClapSawDemoEditor::onRender()
     
     ImGui::Text("Osc (Polyphony %d)", (int)synthData.polyphony);
 
-    addSliderForParam(ClapSawDemo::pmUnisonCount, "uni count", 1, SawDemoVoice::max_uni);
-    addSliderForParam(ClapSawDemo::pmUnisonSpread, "uni spread", 0, 100);
-    addSliderForParam(ClapSawDemo::pmOscDetune, "osc detune", -200, 200);
+    addSliderForParam(ClapSawDemo::pmUnisonCount, "uni count", 1, SawDemoVoice::max_uni, 0);
+    addSliderForParam(ClapSawDemo::pmUnisonSpread, "uni spread", 0, 100, 0);
+    addSliderForParam(ClapSawDemo::pmOscDetune, "osc detune", -200, 200, 0);
 
     ImGui::Separator();
     
-    addSliderForParam(ClapSawDemo::pmPreFilterVCA, "VCA", 0, 1);
+    addSliderForParam(ClapSawDemo::pmPreFilterVCA, "VCA", 0, 1, 0);
     addSwitchForParam(ClapSawDemo::pmAmpIsGate, "Amp Envelope", true);
     
     ImGui::BeginDisabled(paramCopy[ClapSawDemo::pmAmpIsGate] > 0.5f);
-    addSliderForParam(ClapSawDemo::pmAmpAttack, "Attack", 0, 1);
-    addSliderForParam(ClapSawDemo::pmAmpRelease, "Release", 0, 1);
+    addSliderForParam(ClapSawDemo::pmAmpAttack, "Attack", 0, 1, 0);
+    addSliderForParam(ClapSawDemo::pmAmpRelease, "Release", 0, 1, 0);
     ImGui::EndDisabled();
     
     ImGui::Separator();
@@ -340,8 +340,8 @@ void ClapSawDemoEditor::onRender()
         { SawDemoVoice::StereoSimperSVF::Mode::PEAK, "Peak"},
         { SawDemoVoice::StereoSimperSVF::Mode::ALL, "All"} } );
     
-    addSliderForParam(ClapSawDemo::pmCutoff, "cutoff", 1, 127);
-    addSliderForParam(ClapSawDemo::pmResonance, "resonance", 0, 1);
+    addSliderForParam(ClapSawDemo::pmCutoff, "cutoff", 1, 127, 0);
+    addSliderForParam(ClapSawDemo::pmResonance, "resonance", 0, 1, 0);
 
     ImGui::Separator();
 
