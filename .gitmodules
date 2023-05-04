@@ -13,3 +13,6 @@
 [submodule "libs/clap-imgui-support"]
 	path = libs/clap-imgui-support
 	url = https://github.com/free-audio/clap-imgui-support
+[submodule "libs/imgui-knobs"]
+	path = libs/imgui-knobs
+	url = https://github.com/altschuler/imgui-knobs.git

@@ -1,0 +1,14 @@
+C:/Users/enkel/OneDrive/Dokument/GitHub/clap-template/CMakeFiles/clap-saw-demo-imgui.dir
+C:/Users/enkel/OneDrive/Dokument/GitHub/clap-template/CMakeFiles/INSTALL.dir
+C:/Users/enkel/OneDrive/Dokument/GitHub/clap-template/CMakeFiles/ALL_BUILD.dir
+C:/Users/enkel/OneDrive/Dokument/GitHub/clap-template/CMakeFiles/ZERO_CHECK.dir
+C:/Users/enkel/OneDrive/Dokument/GitHub/clap-template/libs/clap/CMakeFiles/clap-tests.dir
+C:/Users/enkel/OneDrive/Dokument/GitHub/clap-template/libs/clap/CMakeFiles/INSTALL.dir
+C:/Users/enkel/OneDrive/Dokument/GitHub/clap-template/libs/clap/CMakeFiles/ALL_BUILD.dir
+C:/Users/enkel/OneDrive/Dokument/GitHub/clap-template/libs/clap-helpers/CMakeFiles/INSTALL.dir
+C:/Users/enkel/OneDrive/Dokument/GitHub/clap-template/libs/clap-helpers/CMakeFiles/ALL_BUILD.dir
+C:/Users/enkel/OneDrive/Dokument/GitHub/clap-template/libs/readerwriterqueue/CMakeFiles/INSTALL.dir
+C:/Users/enkel/OneDrive/Dokument/GitHub/clap-template/libs/readerwriterqueue/CMakeFiles/ALL_BUILD.dir
+C:/Users/enkel/OneDrive/Dokument/GitHub/clap-template/libs/clap-imgui-support/CMakeFiles/imgui-clap-support.dir
+C:/Users/enkel/OneDrive/Dokument/GitHub/clap-template/libs/clap-imgui-support/CMakeFiles/INSTALL.dir
+C:/Users/enkel/OneDrive/Dokument/GitHub/clap-template/libs/clap-imgui-support/CMakeFiles/ALL_BUILD.dir
