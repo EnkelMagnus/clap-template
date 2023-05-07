@@ -7,7 +7,7 @@
 #include "clap/clap.h"
 
 #include "imgui.h"
-
+#include "imgui-knobs.h"
 #define STR_INDIR(x) #x
 #define STR(x) STR_INDIR(x)
 
@@ -155,12 +155,43 @@ ClapSawDemoEditor::ClapSawDemoEditor(ClapSawDemo::SynthToUI_Queue_t &i,
 {
 
 }
-
-void ClapSawDemoEditor::addSliderForParam(clap_id pid, const char* label, float min, float max)
+enum WidgetType
 {
+    H_SLIDER,
+    V_SLIDER,
+    KNOB
+};
+void ClapSawDemoEditor::addSliderForParam(clap_id pid, const char *label, float min, float max,int type)
+{
+    std::string tmp = std::to_string(pid);
+    char const *widgetId = tmp.c_str();
+    ImGui::PushID(widgetId);
+
     float co = paramCopy[pid];
     auto wasInEdit = paramInEdit[pid];
-    if (ImGui::SliderFloat(label, &co, min, max))
+    bool currentValueHasChanged = false;
+    switch (type)
+    {
+    case H_SLIDER:
+        currentValueHasChanged = ImGui::SliderFloat(label, &co, min, max);
+        break;
+    case V_SLIDER:
+
+        ImGui::BeginGroup();
+
+        currentValueHasChanged =
+            ImGui::VSliderFloat("##v", ImVec2(36, 200), &co, min, max, "%.2f S",
+                                ImGuiSliderFlags_::ImGuiSliderFlags_NoRoundToFormat);
+        ImGui::Text(label);
+        ImGui::EndGroup();
+        break;
+    case KNOB:
+        currentValueHasChanged =
+            ImGuiKnobs::Knob(label, &co, -6.0f, 6.0f, 0.1f, "%.1fdB", ImGuiKnobVariant_Tick);
+        break;
+    }
+    ImGui::PopID();
+    if (currentValueHasChanged)
     {
         if (!wasInEdit)
         {
@@ -283,18 +314,18 @@ void ClapSawDemoEditor::onRender()
     
     ImGui::Text("Osc (Polyphony %d)", (int)synthData.polyphony);
 
-    addSliderForParam(ClapSawDemo::pmUnisonCount, "uni count", 1, SawDemoVoice::max_uni);
-    addSliderForParam(ClapSawDemo::pmUnisonSpread, "uni spread", 0, 100);
-    addSliderForParam(ClapSawDemo::pmOscDetune, "osc detune", -200, 200);
+    addSliderForParam(ClapSawDemo::pmUnisonCount, "uni count", 1, SawDemoVoice::max_uni, 0);
+    addSliderForParam(ClapSawDemo::pmUnisonSpread, "uni spread", 0, 100, 0);
+    addSliderForParam(ClapSawDemo::pmOscDetune, "osc detune", -200, 200, 0);
 
     ImGui::Separator();
     
-    addSliderForParam(ClapSawDemo::pmPreFilterVCA, "VCA", 0, 1);
+    addSliderForParam(ClapSawDemo::pmPreFilterVCA, "VCA", 0, 1, 0);
     addSwitchForParam(ClapSawDemo::pmAmpIsGate, "Amp Envelope", true);
     
     ImGui::BeginDisabled(paramCopy[ClapSawDemo::pmAmpIsGate] > 0.5f);
-    addSliderForParam(ClapSawDemo::pmAmpAttack, "Attack", 0, 1);
-    addSliderForParam(ClapSawDemo::pmAmpRelease, "Release", 0, 1);
+    addSliderForParam(ClapSawDemo::pmAmpAttack, "Attack", 0, 1, 0);
+    addSliderForParam(ClapSawDemo::pmAmpRelease, "Release", 0, 1, 0);
     ImGui::EndDisabled();
     
     ImGui::Separator();
@@ -309,8 +340,8 @@ void ClapSawDemoEditor::onRender()
         { SawDemoVoice::StereoSimperSVF::Mode::PEAK, "Peak"},
         { SawDemoVoice::StereoSimperSVF::Mode::ALL, "All"} } );
     
-    addSliderForParam(ClapSawDemo::pmCutoff, "cutoff", 1, 127);
-    addSliderForParam(ClapSawDemo::pmResonance, "resonance", 0, 1);
+    addSliderForParam(ClapSawDemo::pmCutoff, "cutoff", 1, 127, 0);
+    addSliderForParam(ClapSawDemo::pmResonance, "resonance", 0, 1, 0);
 
     ImGui::Separator();
 

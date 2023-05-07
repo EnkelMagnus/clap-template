@@ -22,7 +22,8 @@ struct ClapSawDemoEditor : public imgui_clap_editor
     // GUI Helper functions
 
     // create a slider with start/end edit messagess
-    void addSliderForParam(clap_id pid, const char* label, float min, float max);
+    
+    void addSliderForParam(clap_id pid, const char *label, float min, float max, int type);
     // a on/off switch for a parameter
     void addSwitchForParam(clap_id pid, const char* label, bool reverse);
     // this creates a radio button in one layout line
