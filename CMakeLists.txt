@@ -30,7 +30,7 @@ add_subdirectory(libs/readerwriterqueue EXCLUDE_FROM_ALL)
 add_subdirectory(libs/imgui-knobs EXCLUDE_FROM_ALL)
 set(IMGUI_SOURCE_DIR ${CMAKE_SOURCE_DIR}/libs/imgui)
 add_subdirectory(libs/clap-imgui-support EXCLUDE_FROM_ALL)
-add_subdirectory(libs/imgui-knobs EXCLUDE_FROM_ALL)
+
 
 add_library(${PROJECT_NAME} MODULE
         src/clap-saw-demo.cpp
@@ -38,7 +38,7 @@ add_library(${PROJECT_NAME} MODULE
         src/saw-voice.cpp
         src/clap-saw-demo-pluginentry.cpp 
 )
-target_link_libraries(${PROJECT_NAME} clap-core clap-helpers readerwriterqueue imgui-clap-support imgui-knobs)
+target_link_libraries(${PROJECT_NAME} clap-core clap-helpers readerwriterqueue imgui-clap-support )
 
 if(APPLE)
     set_target_properties(${PROJECT_NAME} PROPERTIES
