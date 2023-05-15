@@ -38,7 +38,7 @@ add_library(${PROJECT_NAME} MODULE
         src/saw-voice.cpp
         src/clap-saw-demo-pluginentry.cpp 
 )
-target_link_libraries(${PROJECT_NAME} clap-core clap-helpers readerwriterqueue imgui-clap-support )
+target_link_libraries(${PROJECT_NAME} clap-core clap-helpers readerwriterqueue imgui-clap-support imgui-knobs)
 
 if(APPLE)
     set_target_properties(${PROJECT_NAME} PROPERTIES
